@@ -121,8 +121,8 @@ export default function LogSession() {
       <div className="session-page__scroll">
         {exercises.length === 0 ? (
           <p className="session-page__empty">
-            No {category.toLowerCase()} exercises yet. Add some from the Log
-            workout screen.
+            No {category.toLowerCase()} exercises yet. Add some on the Home
+            screen.
           </p>
         ) : (
           exercises.map((exercise) => {
