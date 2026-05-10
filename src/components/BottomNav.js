@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './BottomNav.css';
 
 const tabs = [
@@ -81,6 +81,8 @@ const tabs = [
 ];
 
 export default function BottomNav() {
+  const { pathname } = useLocation();
+
   return (
     <nav className="bottom-nav" aria-label="Main">
       <div className="bottom-nav__inner">
@@ -89,9 +91,11 @@ export default function BottomNav() {
             key={to}
             to={to}
             end={end}
-            className={({ isActive }) =>
-              `bottom-nav__link${isActive ? ' bottom-nav__link--active' : ''}`
-            }
+            className={({ isActive }) => {
+              const logActive = to === '/log' && pathname.startsWith('/log');
+              const active = isActive || logActive;
+              return `bottom-nav__link${active ? ' bottom-nav__link--active' : ''}`;
+            }}
           >
             {icon}
             <span className="bottom-nav__label">{label}</span>
