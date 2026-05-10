@@ -4,6 +4,7 @@
   --color-accent: #3d7a35;
   --color-text: #e8e0d5;
   --color-text-muted: #8c7b6b;
+  --font-app: 'Playfair Display', Georgia, 'Times New Roman', serif;
   /* Floating pill + log circle + safe area */
   --nav-height: 4.35rem;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -27,13 +28,18 @@ body {
   height: 100%;
   max-height: 100dvh;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-app);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 #root {
@@ -42,6 +48,5 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: var(--font-app);
 }
