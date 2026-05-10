@@ -116,7 +116,10 @@ export default function ExerciseFormModal({
                       : 'modal__type-btn'
                   }
                   disabled={categoryLocked}
-                  onClick={() => setCategory(c)}
+                  onClick={() => {
+                    setCategory(c);
+                    nameInputRef.current?.focus();
+                  }}
                   aria-pressed={category === c}
                 >
                   {c}
