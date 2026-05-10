@@ -189,21 +189,23 @@ export default function Home() {
         </button>
       </div>
 
-      {exercises.length === 0 ? (
-        <p className="home__empty">
-          No exercises yet. Tap + to add your first one.
-        </p>
-      ) : (
-        <ul className="home__list">
-          {exercises.map((exercise) => (
-            <ExerciseCard
-              key={exercise.id}
-              exercise={exercise}
-              onDelete={deleteExercise}
-            />
-          ))}
-        </ul>
-      )}
+      <div className="home__scroll">
+        {exercises.length === 0 ? (
+          <p className="home__empty">
+            No exercises yet. Tap + to add your first one.
+          </p>
+        ) : (
+          <ul className="home__list">
+            {exercises.map((exercise) => (
+              <ExerciseCard
+                key={exercise.id}
+                exercise={exercise}
+                onDelete={deleteExercise}
+              />
+            ))}
+          </ul>
+        )}
+      </div>
 
       <AddExerciseModal
         open={modalOpen}
