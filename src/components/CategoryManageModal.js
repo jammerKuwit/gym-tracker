@@ -53,7 +53,8 @@ export default function CategoryManageModal({
           Manage {category}
         </h2>
         <p className="manage-modal__hint">
-          Add or remove exercises for this day type.
+          Add existing exercises from your library or remove them. Create new
+          exercises on the Add exercises screen.
         </p>
         <ul className="manage-modal__list">
           {exercises.length === 0 ? (
@@ -101,7 +102,7 @@ export default function CategoryManageModal({
           )}
         </ul>
         <button type="button" className="manage-modal__add" onClick={onAdd}>
-          + Add exercise
+          + Add existing exercise
         </button>
         <button
           type="button"

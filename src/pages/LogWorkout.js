@@ -2,22 +2,21 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CategoryManageModal from '../components/CategoryManageModal';
 import ExerciseFormModal from '../components/ExerciseFormModal';
+import PickExerciseModal from '../components/PickExerciseModal';
 import { EXERCISE_CATEGORIES } from '../constants/exerciseCategories';
 import { useExercises } from '../context/ExercisesContext';
 import { slugFromCategory } from '../utils/categorySlug';
-import { createExerciseId } from '../utils/exercisesStorage';
 import './LogWorkout.css';
 
 export default function LogWorkout() {
   const navigate = useNavigate();
-  const { exercisesByCategory, addExercise, updateExercise, deleteExercise } =
+  const { exercises, exercisesByCategory, updateExercise, deleteExercise } =
     useExercises();
 
   const [manageCategory, setManageCategory] = useState(null);
+  const [pickOpen, setPickOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
-  const [formMode, setFormMode] = useState('add');
   const [formCategory, setFormCategory] = useState(EXERCISE_CATEGORIES[0]);
-  const [formCategoryLocked, setFormCategoryLocked] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const [initialName, setInitialName] = useState('');
 
@@ -29,29 +28,29 @@ export default function LogWorkout() {
     setManageCategory(null);
   };
 
-  const openAddFromManage = () => {
+  const openPickFromManage = () => {
     if (!manageCategory) return;
-    setFormMode('add');
-    setEditingId(null);
-    setFormCategory(manageCategory);
-    setFormCategoryLocked(true);
-    setInitialName('');
-    setFormOpen(true);
+    setPickOpen(true);
+  };
+
+  const closePick = () => {
+    setPickOpen(false);
+  };
+
+  const handleAssign = (exerciseId) => {
+    if (!manageCategory) return;
+    updateExercise(exerciseId, { category: manageCategory });
   };
 
   const openEditFromManage = (exercise) => {
-    setFormMode('edit');
     setEditingId(exercise.id);
     setFormCategory(exercise.category);
-    setFormCategoryLocked(false);
     setInitialName(exercise.name);
     setFormOpen(true);
   };
 
   const handleFormSave = ({ name, category }) => {
-    if (formMode === 'add') {
-      addExercise({ id: createExerciseId(), name, category });
-    } else if (editingId) {
+    if (editingId) {
       updateExercise(editingId, { name, category });
     }
     setFormOpen(false);
@@ -106,17 +105,25 @@ export default function LogWorkout() {
         exercises={managingExercises}
         open={Boolean(manageCategory)}
         onClose={closeManage}
-        onAdd={openAddFromManage}
+        onAdd={openPickFromManage}
         onEditExercise={openEditFromManage}
         onDeleteExercise={deleteExercise}
       />
 
+      <PickExerciseModal
+        open={pickOpen}
+        targetCategory={manageCategory}
+        exercises={exercises}
+        onClose={closePick}
+        onAssign={handleAssign}
+      />
+
       <ExerciseFormModal
         open={formOpen}
-        mode={formMode}
+        mode="edit"
         initialName={initialName}
         initialCategory={formCategory}
-        categoryLocked={formCategoryLocked}
+        categoryLocked={false}
         onClose={() => setFormOpen(false)}
         onSave={handleFormSave}
       />
