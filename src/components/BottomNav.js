@@ -1,17 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './BottomNav.css';
 
-const homeIcon = (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <path
-      d="M4 10.5L12 4l8 6.5V20a1 1 0 01-1 1h-5v-6H10v6H5a1 1 0 01-1-1v-9.5z"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 const exercisesIcon = (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
     <path
@@ -59,18 +48,14 @@ const progressIcon = (
   </svg>
 );
 
-const calendarIcon = (
+const homeIcon = (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <rect
-      x="4"
-      y="5"
-      width="16"
-      height="15"
-      rx="2"
+    <path
+      d="M4 10.5L12 4l8 6.5V20a1 1 0 01-1 1h-5v-6H10v6H5a1 1 0 01-1-1v-9.5z"
       stroke="currentColor"
       strokeWidth="1.75"
+      strokeLinejoin="round"
     />
-    <path d="M8 3v4M16 3v4M4 11h16" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
   </svg>
 );
 
@@ -94,41 +79,30 @@ const logIcon = (
   </svg>
 );
 
-const pillTabs = [
+const navItems = [
+  { to: '/exercises', end: true, label: 'Add exercises', icon: exercisesIcon },
+  { to: '/progress', end: true, label: 'Progress', icon: progressIcon },
   { to: '/', end: true, label: 'Home', icon: homeIcon },
-  { to: '/exercises', end: false, label: 'Exercises', icon: exercisesIcon },
-  { to: '/progress', end: false, label: 'Progress', icon: progressIcon },
-  { to: '/calendar', end: false, label: 'Calendar', icon: calendarIcon },
+  { to: '/log', end: false, label: 'Log workout', icon: logIcon },
 ];
 
 export default function BottomNav() {
   return (
     <nav className="bottom-nav" aria-label="Main">
-      <div className="bottom-nav__cluster">
-        <div className="bottom-nav__pill">
-          {pillTabs.map(({ to, end, label, icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={end}
-              aria-label={label}
-              className={({ isActive }) =>
-                `bottom-nav__pill-link${isActive ? ' bottom-nav__pill-link--active' : ''}`
-              }
-            >
-              {icon}
-            </NavLink>
-          ))}
-        </div>
-        <NavLink
-          to="/log"
-          aria-label="Log workout"
-          className={({ isActive }) =>
-            `bottom-nav__log${isActive ? ' bottom-nav__log--active' : ''}`
-          }
-        >
-          {logIcon}
-        </NavLink>
+      <div className="bottom-nav__inner">
+        {navItems.map(({ to, end, label, icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            aria-label={label}
+            className={({ isActive }) =>
+              `bottom-nav__link${isActive ? ' bottom-nav__link--active' : ''}`
+            }
+          >
+            {icon}
+          </NavLink>
+        ))}
       </div>
     </nav>
   );

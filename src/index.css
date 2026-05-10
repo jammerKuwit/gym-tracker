@@ -4,8 +4,8 @@
   --color-accent: #3d7a35;
   --color-text: #e8e0d5;
   --color-text-muted: #8c7b6b;
-  /* Floating pill + log circle + safe area */
-  --nav-height: 4.5rem;
+  /* Full-width tab bar + safe area */
+  --nav-height: 3.75rem;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-top: env(safe-area-inset-top, 0px);
 }
