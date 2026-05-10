@@ -114,21 +114,30 @@ function AddExerciseModal({ open, onClose, onAdd }) {
             />
           </div>
           <div className="modal__field">
-            <label className="modal__label" htmlFor="exercise-category">
+            <span className="modal__label" id="exercise-type-label">
               Category
-            </label>
-            <select
-              id="exercise-category"
-              className="modal__select"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+            </span>
+            <div
+              className="modal__type-row"
+              role="group"
+              aria-labelledby="exercise-type-label"
             >
               {EXERCISE_CATEGORIES.map((c) => (
-                <option key={c} value={c}>
+                <button
+                  key={c}
+                  type="button"
+                  className={
+                    category === c
+                      ? 'modal__type-btn modal__type-btn--selected'
+                      : 'modal__type-btn'
+                  }
+                  onClick={() => setCategory(c)}
+                  aria-pressed={category === c}
+                >
                   {c}
-                </option>
+                </button>
               ))}
-            </select>
+            </div>
           </div>
           <div className="modal__actions">
             <button

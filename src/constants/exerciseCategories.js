@@ -1,8 +1,1 @@
-export const EXERCISE_CATEGORIES = [
-  'Chest',
-  'Back',
-  'Legs',
-  'Shoulders',
-  'Arms',
-  'Core',
-];
+export const EXERCISE_CATEGORIES = ['Push', 'Pull', 'Legs'];
