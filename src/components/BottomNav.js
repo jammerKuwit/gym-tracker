@@ -12,6 +12,41 @@ const homeIcon = (
   </svg>
 );
 
+const exercisesIcon = (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <path
+      d="M5 10h2v4H5V10zm12 0h2v4h-2V10z"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+    />
+    <path
+      d="M7 12h10"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+    />
+    <rect
+      x="2"
+      y="9"
+      width="4"
+      height="6"
+      rx="1"
+      stroke="currentColor"
+      strokeWidth="1.75"
+    />
+    <rect
+      x="18"
+      y="9"
+      width="4"
+      height="6"
+      rx="1"
+      stroke="currentColor"
+      strokeWidth="1.75"
+    />
+  </svg>
+);
+
 const progressIcon = (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
     <path
@@ -61,6 +96,7 @@ const logIcon = (
 
 const pillTabs = [
   { to: '/', end: true, label: 'Home', icon: homeIcon },
+  { to: '/exercises', end: false, label: 'Exercises', icon: exercisesIcon },
   { to: '/progress', end: false, label: 'Progress', icon: progressIcon },
   { to: '/calendar', end: false, label: 'Calendar', icon: calendarIcon },
 ];
