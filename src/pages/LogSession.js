@@ -7,6 +7,10 @@ import {
   loadSessionDraft,
   saveSessionDraft,
 } from '../utils/sessionDraftStorage';
+import {
+  appendCompletedWorkout,
+  buildCompletedWorkout,
+} from '../utils/workoutHistoryStorage';
 import './LogSession.css';
 
 function createSetRowId() {
@@ -102,8 +106,12 @@ export default function LogSession() {
   }, []);
 
   const handleDone = useCallback(() => {
+    if (!category || exercises.length === 0) return;
+    appendCompletedWorkout(
+      buildCompletedWorkout(category, exercises, byExercise)
+    );
     clearSessionDraft();
-  }, []);
+  }, [category, exercises, byExercise]);
 
   if (!category) {
     return <Navigate to="/log" replace />;
