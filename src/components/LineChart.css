@@ -1,0 +1,71 @@
+.line-chart {
+  background-color: var(--color-panel);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(232, 224, 213, 0.06);
+  padding: 1rem;
+}
+
+.line-chart__header {
+  margin-bottom: 0.75rem;
+}
+
+.line-chart__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.line-chart__subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.line-chart__empty {
+  margin: 0;
+  padding: 1.25rem 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.line-chart__frame {
+  width: 100%;
+  overflow: hidden;
+}
+
+.line-chart__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.line-chart__grid {
+  stroke: rgba(232, 224, 213, 0.08);
+  stroke-width: 1;
+}
+
+.line-chart__tick,
+.line-chart__label {
+  fill: var(--color-text-muted);
+  font-size: 10px;
+  font-family: inherit;
+}
+
+.line-chart__area {
+  fill: rgba(61, 122, 53, 0.2);
+}
+
+.line-chart__line {
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.line-chart__dot {
+  fill: var(--color-accent);
+  stroke: var(--color-bg);
+  stroke-width: 2;
+}

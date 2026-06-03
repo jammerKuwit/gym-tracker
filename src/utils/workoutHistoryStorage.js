@@ -92,7 +92,12 @@ export function buildCompletedWorkout(category, exercises, byExercise) {
   };
 }
 
+export function notifyWorkoutHistoryUpdated() {
+  window.dispatchEvent(new Event('gym-tracker-history-updated'));
+}
+
 export function appendCompletedWorkout(workout) {
   const history = loadWorkoutHistory();
   saveWorkoutHistory([...history, workout]);
+  notifyWorkoutHistoryUpdated();
 }
